@@ -1,0 +1,10 @@
+{%extends 'main_temp.html'%}
+{%block content%}
+<div>
+    {%for server in contents%}
+    <div>
+        <a href="{%url 'server' server.id%}">{{server.name}}</a>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}

@@ -1,0 +1,10 @@
+{%extends 'main_temp.html'%}
+{%block content%}
+<div>
+    {%for channel in contents%}
+    <div>
+        >><a href="{%url 'channel' channel.id%}" style="color: brown;"> {{channel.name}}</a>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}
