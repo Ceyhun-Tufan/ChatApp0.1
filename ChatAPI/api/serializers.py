@@ -4,7 +4,6 @@ from .models import Server,Channel,Message
 
 
 class ServerSerial(serializers.ModelSerializer):
-    lookup_field = 'post' 
     class Meta:
         model = Server
         fields="__all__"
@@ -15,6 +14,7 @@ class ChannelSerial(serializers.HyperlinkedModelSerializer):
         fields="__all__"
 
 class MessageSerial(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.user_name")
     class Meta:
         model = Message
-        fields=("user","body","message_channel",)
+        fields=("user","body","message_channel","username",)

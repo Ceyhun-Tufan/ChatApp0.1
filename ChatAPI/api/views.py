@@ -45,7 +45,12 @@ def getMessages(request, channel):
     messages = Message.objects.filter(message_channel=channel_details)
     # message_values = messages.values()
     # message_values["user_id"] = User.objects.all().filter(id = message_values["user_id"]) queryde olmuyor
-    return JsonResponse({"messages":list(messages.values())})
+    messages_values = messages.values()
+    for i in messages_values:
+        i["user_id"] = User.objects.get(id=i["user_id"]).username
+
+
+    return JsonResponse({"messages":list(messages_values)})
 
 
 
