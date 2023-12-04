@@ -14,7 +14,14 @@ class ChannelSerial(serializers.HyperlinkedModelSerializer):
         fields="__all__"
 
 class MessageSerial(serializers.ModelSerializer):
-    username = serializers.CharField(source="user.user_name")
+    username = serializers.Field(source="user.username")
     class Meta:
         model = Message
         fields=("user","body","message_channel","username",)
+
+
+# class ProfileSerializer(serializers.ModelSerializer):
+#   user = serializers.SerializerMethodField()
+
+#   def get_user(self, obj):
+#       return obj.user.username

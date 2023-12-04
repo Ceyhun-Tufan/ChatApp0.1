@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 # server->channel->messages
 # class type:
 # user
@@ -32,5 +33,8 @@ class Message(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     message_channel = models.ForeignKey(Channel,on_delete=models.CASCADE)
+    username = models.CharField(max_length=150,default="undefined")  # Max length should match the length of User.username
+
     def __str__(self) -> str:
         return str(self.body[:20])
+    

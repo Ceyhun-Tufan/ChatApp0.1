@@ -21,9 +21,6 @@ def server_view(requests,sk):
 
 def channel_view(requests,ck):
     contents = {
-        "contents" : Message.objects.all().filter(message_channel=ck)
-        }
-    contents = {
         "channel_content":Channel.objects.get(id=ck),
         "message_content" :Message.objects.all().filter(message_channel=ck)
         }
@@ -42,15 +39,10 @@ def send(request):
 
 def getMessages(request, channel):
     channel_details = Channel.objects.get(id=channel)
-    messages = Message.objects.filter(message_channel=channel_details)
+    messages = Message.objects.all().filter(message_channel=channel_details)
     # message_values = messages.values()
     # message_values["user_id"] = User.objects.all().filter(id = message_values["user_id"]) queryde olmuyor
-    messages_values = messages.values()
-    for i in messages_values:
-        i["user_id"] = User.objects.get(id=i["user_id"]).username
-
-
-    return JsonResponse({"messages":list(messages_values)})
+    return JsonResponse({"messages":list(messages.values())})
 
 
 

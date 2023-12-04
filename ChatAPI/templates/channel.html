@@ -78,7 +78,7 @@ setInterval(function(){
             $("#display").empty();
             for (var key in response.messages)
             {
-                var temp="<div class='container darker'><b>"+response.messages[key].user_id+"</b><p>"+response.messages[key].body+"</p><span class='time-left'>";
+                var temp="<div class='container darker'><b>"+response.messages[key].username+"</b><p>"+response.messages[key].body+"</p><span class='time-left'>";
                 $("#display").append(temp);
             }
         },
